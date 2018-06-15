@@ -1,0 +1,29 @@
+.kyctextbox {
+    width: 100%;
+}
+
+.kycmargin {
+    margin-left: 20px;
+}
+
+.kycradio1 {
+    margin-left: -26px;
+    text-align: center;
+}
+
+.kycradio2 {
+    margin-left: -70px;
+    text-align: center;
+}
+
+.kycmargintext {
+    margin-left: 20px;
+    margin-top: 20px;
+}
+
+.kycheading {
+    text-align: right;
+}
+.kycrow {
+    margin-top: 20px
+}

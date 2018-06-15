@@ -12,11 +12,5 @@
 */
 
 Route::get('/', function () {
-    return view('welcome');
+    return view('home');
 });
-
-Route::get('main', function () {
-    return view('kyc');
-});
-
-Route::post('/test', "Test@test");
