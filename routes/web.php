@@ -11,14 +11,18 @@
 |
 */
 
+
+
 Route::get('/', function () {
-    return view('welcome');
+    return view('KYC.kyc');
 });
 
-
-Route::get('main', function () {
-    return view('kyc');
+Route::get('/success', function () {
+    return view('KYC.success');
 });
 
-Route::post('/test', "Test@test");
+Route::get('/duplicate', function () {
+    return view('KYC.duplicate');
+});
 
+Route::post('/submit', "KYCController@validateKyc");

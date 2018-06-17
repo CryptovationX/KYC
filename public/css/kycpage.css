@@ -1,5 +1,50 @@
+
+#particles-js canvas{
+    position: fixed;
+    width: 100%;
+    height: 100%;
+    z-index: -1;
+    background-image: url('/images/pinbg.jpg');
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-attachment: fixed;
+}
+
+.center{
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+    width: 50%;
+}
+
+.choosenpic{
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+    height: 250px;
+}
+
+.logo {
+    margin-top:40px;
+    margin-bottom: 40px;
+    width: 500;
+}
+
+.portrait {
+    margin-top:80px;
+    margin-bottom: 40px;
+    width: 500;
+}
+
+.container {
+    background-color:white;
+    height: 100%;
+    opacity: 0.92;
+}
+
 .kyctextbox {
     width: 100%;
+    margin-left: 20px;
 }
 
 .kycmargin {
@@ -7,13 +52,13 @@
 }
 
 .kycradio1 {
-    margin-left: -26px;
-    text-align: center;
+    margin-left: 20px;
+    text-align: left;
 }
 
 .kycradio2 {
-    margin-left: -70px;
-    text-align: center;
+    margin-left: 20px;
+    text-align: left;
 }
 
 .kycmargintext {
@@ -32,4 +77,27 @@
     margin-left: 20px;
     width: 100%;
     height:25px;
+}
+
+.kycfile{
+    background-color:	#1E90FF;
+    color: white;
+    text-align: center;
+    text-decoration: none;
+    font-size: 16px;
+    padding: 8px 20px;
+}
+
+.kycsubmit {
+    background-color:	#1E90FF;
+    color: white;
+    text-align: center;
+    text-decoration: none;
+    padding: 8px 60px;
+}
+
+.kycalert {
+    margin-top: 75px;
+
+    text-align: center;
 }
