@@ -7,6 +7,7 @@
   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
   <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+
 </head>
 <body>
 
@@ -16,7 +17,6 @@
         <p>If you have problem, please contact Tech Team via ZOHO.</p>
         <a href="{{route('kyc.refresh')}}" class= "btn btn-primary"style= width: 20%">Refresh</a>
         <a href="{{route('kyc.getpending')}}" class= "btn btn-primary"style= width: 20%">Get Pending</a>
-
         <hr>
     <table class="table table-striped">
     <thead>
@@ -39,10 +39,14 @@
         <td>{{ $lname }}</td>
         <td>{{ $email }}</td>
         <td>
-            <img src="https://vignette.wikia.nocookie.net/despicableme/images/e/ef/Party_Minions.jpg/revision/latest?cb=20130808131958" class="img-rounded" alt="Passport not found" width="400" height="300"> 
+            <img src="https://vignette.wikia.nocookie.net/despicableme/images/e/ef/Party_Minions.jpg/revision/latest?cb=20130808131958" class="img-rounded" alt="Passport not found" width="400" height="300">
+            {{-- <img src= "$passport" class="img-rounded" alt="Passport not found" width="400" height="300">  --}}
+
         </td>
         <td>
-            <img src="https://vignette.wikia.nocookie.net/parody/images/c/c1/Minions_yay_with_bear.jpg/revision/latest?cb=20150513161252" class="img-rounded" alt="Self-Portrait not found" width="400" height="300"> 
+            <img src="https://vignette.wikia.nocookie.net/parody/images/c/c1/Minions_yay_with_bear.jpg/revision/latest?cb=20150513161252" class="img-rounded" alt="Self-Portrait not found" width="400" height="300">
+            {{-- <img src= "$portrait" class="img-rounded" alt="Self-Portrait not found" width="400" height="300">  --}}
+ 
         </td>
 
         <td>
@@ -71,6 +75,7 @@
     </tr>
     </tbody>
   </table>
+  
 <a href="{{route('getprevious',$id)}}" class= "btn btn-default">previous</a>
 <a href="{{route('getnext',$id)}}" class= "btn btn-default">next</a>
 
