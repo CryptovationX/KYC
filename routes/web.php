@@ -19,4 +19,8 @@ Route::get('main', function () {
     return view('kyc');
 });
 
-Route::post('/test', "Test@test");
+Route::post('main', "Test@test");
+
+Route::get('upload', function () {
+    return view('kyctest', 'UploadController@testing');
+});
