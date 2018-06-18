@@ -11,7 +11,7 @@
 </head>
 <body>
 
-<div class="container-fluid" style = "width: 95%">
+<div class="container-fluid" style = "width: 80%">
 
         <h2>KYC Check Portal</h2>
         <p>If you have problem, please contact Tech Team via ZOHO.</p>
@@ -75,9 +75,11 @@
     </tr>
     </tbody>
   </table>
-  
-<a href="{{route('getprevious',$id)}}" class= "btn btn-default">previous</a>
-<a href="{{route('getnext',$id)}}" class= "btn btn-default">next</a>
+
+{{-- <a href="{{route('getprevious',$id)}}`">previous <span class="badge">{{$pre}}</span></a><br> --}}
+
+<a href="{{route('getprevious',$id)}}" class= "btn btn-default">previous <span class="badge"> {{$pre}}</span></a>
+<a href="{{route('getnext',$id)}}" class= "btn btn-default">next <span class="badge"> {{$post}}</span></a>
 
 </div>
 </div>

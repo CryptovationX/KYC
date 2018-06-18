@@ -15,26 +15,25 @@ class KycCheckController extends Controller
      */
     public function index()
     {
+         
         $kyc = kyccheck::where('status',"unconfirmed")->where('users',NULL)->first();
         $kyc->users = "active";
         $kyc->save();
-        
+
+        $count = kyccheck::count();
+        $pre = $kyc->id - 1;
+        $post = $count - $kyc->id;
+
         $id = $kyc->id;
         $firstname = $kyc->firstname;
         $lastname = $kyc->lastname;
         $email = $kyc->email;
-
-        // $passport = $kyc->passport;
-        // $portrait = $kyc->portrait;
-        
         $check = $kyc->status;
         $note = $kyc->note;
         
         return view('kyccheck')->withId($id)->withFname($firstname)->withLname($lastname)
-        ->withEmail($email)->withStatus($check)->withComment($note);
-
-        // return view('kyccheck')->withId($id)->withFname($firstname)->withLname($lastname)
-        // ->withEmail($email)->withPassport($passport)->withPortrait($portrait)->withStatus($check)->withComment($note);
+        ->withEmail($email)->withStatus($check)->withComment($note)
+        ->withCount($count)->withPre($pre)->withPost($post);
     }
 
 
@@ -175,5 +174,7 @@ class KycCheckController extends Controller
         // return view('kyccheck')->withId($id)->withFname($firstname)->withLname($lastname)
         // ->withEmail($email)->withPassport($passport)->withPortrait($portrait)->withStatus($check)->withComment($note);
     }
+
+ 
 
 }
