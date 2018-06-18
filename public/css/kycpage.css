@@ -51,6 +51,10 @@
     margin-left: 20px;
 }
 
+.kycmargin-sm {
+    margin-left: 10px;
+}
+
 .kycradio1 {
     margin-left: 20px;
     text-align: left;
@@ -113,4 +117,98 @@
     margin-top: -42px;
     margin-bottom: 42px;
     margin-right: -20px;
+}
+
+* {box-sizing: border-box;}
+
+.img-zoom-container {
+  position: relative;
+}
+
+.img-zoom-lens {
+  position: absolute;
+  border: 1px solid #d4d4d4;
+  /*set the size of the lens:*/
+  width: 40px;
+  height: 40px;
+}
+
+.img-zoom-result {
+  border: 1px solid #d4d4d4;
+  /*set the size of the result div:*/
+  width: 400px;
+  height: 300px;
+}
+
+.dot-success {
+    height: 22px;
+    width: 22px;
+    background-color: rgb(58, 170, 58);
+    border-radius: 50%;
+}
+
+.dot-warning {
+    height: 22px;
+    width: 22px;
+    background-color: #ffc107;
+    border-radius: 50%;
+}
+
+.dot-danger {
+    height: 22px;
+    width: 22px;
+    background-color: rgb(170, 0, 0);
+    border-radius: 50%;
+}
+
+.dot-grey {
+    height: 22px;
+    width: 22px;
+    background-color: rgb(167, 167, 167);
+    border-radius: 50%;
+}
+
+/* padding-bottom and top for image */
+.mfp-no-margins img.mfp-img {
+	padding: 0;
+}
+/* position of shadow behind the image */
+.mfp-no-margins .mfp-figure:after {
+	top: 0;
+	bottom: 0;
+}
+/* padding for main container */
+.mfp-no-margins .mfp-container {
+	padding: 0;
+}
+
+
+/* 
+
+for zoom animation 
+uncomment this part if you haven't added this code anywhere else
+
+*/
+
+
+.mfp-with-zoom .mfp-container,
+.mfp-with-zoom.mfp-bg {
+	opacity: 0;
+	-webkit-backface-visibility: hidden;
+	-webkit-transition: all 0.3s ease-out; 
+	-moz-transition: all 0.3s ease-out; 
+	-o-transition: all 0.3s ease-out; 
+	transition: all 0.3s ease-out;
+}
+
+.mfp-with-zoom.mfp-ready .mfp-container {
+		opacity: 1;
+}
+.mfp-with-zoom.mfp-ready.mfp-bg {
+		opacity: 0.8;
+}
+
+.mfp-with-zoom.mfp-removing .mfp-container, 
+.mfp-with-zoom.mfp-removing.mfp-bg {
+	opacity: 0;
 }

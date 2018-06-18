@@ -3,8 +3,11 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-use App\kyccheck;
+use Illuminate\Contracts\Filesystem\Filesystem;
+use Illuminate\Support\Facades\Storage;
 use Illuminate\Support\Facades\Redirect;
+use App\Knowyc;
+use Carbon\Carbon;
 
 class KycCheckController extends Controller
 {
@@ -15,165 +18,155 @@ class KycCheckController extends Controller
      */
     public function index()
     {
-        $kyc = kyccheck::where('status',"unconfirmed")->where('users',NULL)->first();
+        //
+        $kyc = Knowyc::where('status', "unconfirmed")->where('users', null)->first();
+        if ($kyc == null) {
+            $kyc = Knowyc::where('status', "Pending")->where('users', null)->first();
+            if ($kyc == null) {
+                return view('KYC.approve');
+            }
+        }
         $kyc->users = "active";
         $kyc->save();
+        $kyc->pic_passport = $this->getImagewithdim($kyc->pic_passport);
+        $kyc->pic_portrait = $this->getImage($kyc->pic_portrait);
+        $count = Knowyc::count();
+        $kyc->pre = $kyc->id - 1;
+        $kyc->post = $count - $kyc->id;
         
-        $id = $kyc->id;
-        $firstname = $kyc->firstname;
-        $lastname = $kyc->lastname;
-        $email = $kyc->email;
-
-        // $passport = $kyc->passport;
-        // $portrait = $kyc->portrait;
-        
-        $check = $kyc->status;
-        $note = $kyc->note;
-        
-        return view('kyccheck')->withId($id)->withFname($firstname)->withLname($lastname)
-        ->withEmail($email)->withStatus($check)->withComment($note);
-
-        // return view('kyccheck')->withId($id)->withFname($firstname)->withLname($lastname)
-        // ->withEmail($email)->withPassport($passport)->withPortrait($portrait)->withStatus($check)->withComment($note);
+        return view('KYCCheck.index')->withInfo($kyc);
     }
-
 
     public function ApproveStatus($id)
     {
-        $kyc = kyccheck::find($id);
+        $kyc = Knowyc::find($id);
         $kyc->status = "Approved";
         $kyc->users = null;
         $kyc->save();
     
-        return redirect()->route ('kyccheck');
-
+        return redirect()->route('kyccheck');
     }
 
     public function refresh()
     {
-        $kyc = kyccheck::where('users', "active")->update(array('users' => null));
-        return redirect()->route ('kyccheck');
+        $kyc = Knowyc::where('users', "active")->update(array('users' => null));
+
+        return redirect()->route('kyccheck');
     }
     
     public function getPending()
     {
-        $kyc = kyccheck::where('status', "Pending")->first();
-        
-        
-        $id = $kyc->id;
-        $firstname = $kyc->firstname;
-        $lastname = $kyc->lastname;
-        $email = $kyc->email;
-
-        // $passport = $kyc->passport;
-        // $portrait = $kyc->portrait;
-        
-        $check = $kyc->status;
-        $note = $kyc->note;
+        $kyc = Knowyc::where('status', "Pending")->first();
+        $kyc->pic_passport = $this->getImagewithdim($kyc->pic_passport);
+        $kyc->pic_portrait = $this->getImage($kyc->pic_portrait);
+        $count = Knowyc::count();
+        $kyc->pre = $kyc->id - 1;
+        $kyc->post = $count - $kyc->id;
        
-        return view('kyccheck')->withId($id)->withFname($firstname)->withLname($lastname)
-        ->withEmail($email)->withStatus($check)->withComment($note);
-
-        // return view('kyccheck')->withId($id)->withFname($firstname)->withLname($lastname)
-        // ->withEmail($email)->withPassport($passport)->withPortrait($portrait)->withStatus($check)->withComment($note);
-    
+        return view('KYCCheck.index')->withInfo('$kyc');
     }
 
     public function PendingStatus($id)
     {
-        $kyc = kyccheck::find($id);
+        $kyc = Knowyc::find($id);
         $kyc->status = "Pending";
         $kyc->users = null;
         $kyc->save();
     
-        return redirect()->route ('kyccheck');
-
+        return redirect()->route('kyccheck');
     }
 
     public function RejectStatus($id)
     {
-        $kyc = kyccheck::find($id);
+        $kyc = Knowyc::find($id);
         $kyc->status = "Reject";
         $kyc->users = null;
         $kyc->save();
     
-        return redirect()->route ('kyccheck');
-
+        return redirect()->route('kyccheck');
     }
     
     public function updateNote(Request $request)
-    { 
-        $kyc = kyccheck::where('users',"active")->first();
+    {
+        $kyc = Knowyc::where('users', "active")->first();
         $kyc->note = $request->comment;
         $kyc->save();
+        $kyc->pic_passport = $this->getImagewithdim($kyc->pic_passport);
+        $kyc->pic_portrait = $this->getImage($kyc->pic_portrait);
+        $count = Knowyc::count();
+        $kyc->pre = $kyc->id - 1;
+        $kyc->post = $count - $kyc->id;
         
-        $id = $kyc->id;
-        $firstname = $kyc->firstname;
-        $lastname = $kyc->lastname;
-        $email = $kyc->email;
-
-        // $passport = $kyc->passport;
-        // $portrait = $kyc->portrait;
-        
-        $check = $kyc->status;
-        $note = $kyc->note;
-       
-        return view('kyccheck')->withId($id)->withFname($firstname)->withLname($lastname)
-        ->withEmail($email)->withStatus($check)->withComment($note);
-
-        // return view('kyccheck')->withId($id)->withFname($firstname)->withLname($lastname)
-        // ->withEmail($email)->withPassport($passport)->withPortrait($portrait)->withStatus($check)->withComment($note);
+        return view('KYCCheck.index')->withInfo($kyc);
     }
 
     
     public function getNext($id)
     {
-          
-            $kyc = kyccheck::find($id+1);
-            $kyc->users = null;
+        $kyc = Knowyc::find($id);
+        $kyc->users = null;
+        $kyc->save();
 
-            $id = $kyc->id;
-            $firstname = $kyc->firstname;
-            $lastname = $kyc->lastname;
-            $email = $kyc->email;
-
-        // $passport = $kyc->passport;
-        // $portrait = $kyc->portrait;
-            
-            $check = $kyc->status;
-            $users = $kyc->users;
-            $note = $kyc->note;
-            return view('kyccheck')->withId($id)->withFname($firstname)->withLname($lastname)
-        ->withEmail($email)->withStatus($check)->withUsers($users)->withComment($note);
-
-        // return view('kyccheck')->withId($id)->withFname($firstname)->withLname($lastname)
-        // ->withEmail($email)->withPassport($passport)->withPortrait($portrait)->withStatus($check)->withComment($note);
+        $kyc = Knowyc::find($id+1);
+        $kyc->users = "active";
+        $kyc->save();
+        $kyc->pic_passport = $this->getImagewithdim($kyc->pic_passport);
+        $kyc->pic_portrait = $this->getImage($kyc->pic_portrait);
+        $count = Knowyc::count();
+        $kyc->pre = $kyc->id - 1;
+        $kyc->post = $count - $kyc->id;
         
+        return view('KYCCheck.index')->withInfo($kyc);
     }
 
         
     public function getPrevious($id)
     {
-        
-        $kyc = kyccheck::find($id-1);
+        $kyc = Knowyc::find($id);
         $kyc->users = null;
+        $kyc->save();
 
-        $id = $kyc->id;
-        $firstname = $kyc->firstname;
-        $lastname = $kyc->lastname;
-        $email = $kyc->email;
-
-        // $passport = $kyc->passport;
-        // $portrait = $kyc->portrait;
-
-        $check = $kyc->status;
-        $users = $kyc->users;
-        $note = $kyc->note;
-        return view('kyccheck')->withId($id)->withFname($firstname)->withLname($lastname)
-        ->withEmail($email)->withStatus($check)->withUsers($users)->withComment($note);
-
-        // return view('kyccheck')->withId($id)->withFname($firstname)->withLname($lastname)
-        // ->withEmail($email)->withPassport($passport)->withPortrait($portrait)->withStatus($check)->withComment($note);
+        $kyc = Knowyc::find($id-1);
+        $kyc->users = "active";
+        $kyc->save();
+        $kyc->pic_passport = $this->getImagewithdim($kyc->pic_passport);
+        $kyc->pic_portrait = $this->getImage($kyc->pic_portrait);
+        $count = Knowyc::count();
+        $kyc->pre = $kyc->id - 1;
+        $kyc->post = $count - $kyc->id;
+        
+        return view('KYCCheck.index')->withInfo($kyc);
     }
 
+    public function getImagewithdim($name)
+    {
+        $url[0] = Storage::disk('s3')->temporaryUrl(
+            $name,
+        
+            Carbon::now()->addSeconds(5)
+        );
+
+        list($width, $height) = getimagesize($url[0]);
+        
+        if ($width > $height) {
+            $url['width'] = 300;
+            $url['height'] = $height/$width*300;
+        } else {
+            $url['height'] = 300;
+            $url['width'] = $width/$height*300;
+        }
+
+        return $url;
+    }
+
+    public function getImage($name)
+    {
+        $url = Storage::disk('s3')->temporaryUrl(
+            $name,
+        
+            Carbon::now()->addSeconds(5)
+        );
+
+        return $url;
+    }
 }
