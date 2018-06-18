@@ -11,7 +11,24 @@
 |
 */
 
-Route::get('/', 'KycCheckController@index')->name('kyccheck');
+
+
+
+Route::get('/', function () {
+    return view('KYC.kyc');
+});
+
+Route::get('/success', function () {
+    return view('KYC.success');
+});
+
+Route::get('/duplicate', function () {
+    return view('KYC.duplicate');
+});
+
+Route::post('/submit', "KYCController@validateKyc");
+
+Route::get('/wund', 'KycCheckController@index')->name('kyccheck');
 
 // Route::post('/status', 'KycCheckController@updateStatus');
 Route::post('/note', 'KycCheckController@updateNote');
