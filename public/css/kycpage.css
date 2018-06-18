@@ -104,3 +104,13 @@
 .kyctransition{
     transition: 0.3s;
 }
+
+.kycunderlogo{
+    color: white;
+    text-align: center;
+    font-size: 21px;
+    font-family: 'Open Sans';
+    margin-top: -42px;
+    margin-bottom: 42px;
+    margin-right: -20px;
+}
