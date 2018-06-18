@@ -38,12 +38,12 @@
 
                 <div class="col-md-2"></div>
 
-                <div class='col-md-6'>
-                    <p class="kycmargintext">This verification option applies to users with ID from all countries and territories outside United states of America<br>
+                <div class='col-md-8'>
+                    <p class="kycmargintext">This verification option applies to users with ID from all countries and territories outside United states of America.<br>
                         You must use your real identity during this verification process. Your personal information will be securely protected.<br>
                         The following forms of government-issued ID can be used:<br>
                         1. Passport <br>
-                        2. Driver's license <br>
+                        2. Driver's license <br>ç
                         3. Government-issued ID Card
                     </p>
                 </div>
@@ -411,6 +411,7 @@
                             &#10003; Note with today's date
                     </p>  
                     </p>
+                    
                 </div>
                     
             </div>
