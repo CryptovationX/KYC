@@ -313,7 +313,7 @@
     <div class="row">
         <div class="col-md-2 kycheading">Terms and Conditions</div>
         <div class="col-md-9 kycmargin">
-            <p> Terms and Conditions : <a href="https://cryptovationx.io/terms-conditions">Link</a> </p>
+            <p> Terms and Conditions : <a href="https://cryptovationx.io/terms-conditions" target="_blank">Link</a> </p>
             
             <input type="checkbox" name="terms" id="terms" />
             <span>I acknowledge that I have read the Terms & Conditions and agree to be bound by them.</span>
@@ -323,7 +323,7 @@
     <div class="row" style="margin-top:20px;">
         <div class='col-md-2'></div>
         <div class='col-md-2'>
-            {{Form::submit('Submit', ['id' => 'submitbut', 'class' => 'kyctextbox btn btn-primary', 'disabled'])}}
+            {{Form::submit('Submit', ['id' => 'submitbut', 'class' => 'kyctextbox btn btn-primary kyctransition', 'disabled'])}}
         </div>
     </div>
 
