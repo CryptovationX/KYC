@@ -56,7 +56,7 @@
             @if ($info->nationality=='American' || $info->residence=='United States' || $info->us_citizen=='No')
               <a href="" class= "btn btn-success btn-block" disabled>Approve</a>
             @else
-              <a href="{{route('kyc.approve', $info->id)}}" class= "btn btn-success btn-block">Approve</a>
+                <a href="{{route('kyc.approve', $info->id)}}" class= "btn btn-success btn-block">Approve</a>            
             @endif
             
             <a href="{{route('kyc.pending', $info->id)}}" class= "btn btn-warning btn-block">Pending</a>
@@ -164,8 +164,21 @@
   
   <hr>
 
-<a href="{{route('getprevious',$info->id)}}" class= "btn btn-default btn-lg">Previous</a>
-<a href="{{route('getnext',$info->id)}}" class= "btn btn-default btn-lg" style="float: right;">Next</a>
+  @if ($info->pre==0)
+    <a href="" class= "btn btn-primary">Previous<span class="badge kycmargin-sm">{{$info->pre}}</span></a>
+
+  @else
+    <a href="{{route('getprevious',$info->id)}}" class= "btn btn-primary">Previous<span class="badge kycmargin-sm">{{$info->pre}}</span></a>
+
+  @endif
+
+  @if ($info->post==0)
+    <a href="" class= "btn btn-primary" style="float: right;">Next<span class="badge kycmargin-sm">   {{$info->post}}</span></a>
+
+  @else
+    <a href="{{route('getnext',$info->id)}}" class= "btn btn-primary" style="float: right;">Next<span class="badge kycmargin-sm">   {{$info->post}}</span></a>
+
+  @endif
 
 @include('partials.footer')
 

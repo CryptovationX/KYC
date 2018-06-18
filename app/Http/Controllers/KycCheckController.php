@@ -18,13 +18,21 @@ class KycCheckController extends Controller
      */
     public function index()
     {
-        // ->where('users', null)
-        $kyc = Knowyc::where('status', "unconfirmed")->first();
+        //
+        $kyc = Knowyc::where('status', "unconfirmed")->where('users', null)->first();
+        if ($kyc == null) {
+            $kyc = Knowyc::where('status', "Pending")->where('users', null)->first();
+            if ($kyc == null) {
+                return view('KYC.approve');
+            }
+        }
         $kyc->users = "active";
         $kyc->save();
         $kyc->pic_passport = $this->getImagewithdim($kyc->pic_passport);
         $kyc->pic_portrait = $this->getImage($kyc->pic_portrait);
-        
+        $count = Knowyc::count();
+        $kyc->pre = $kyc->id - 1;
+        $kyc->post = $count - $kyc->id;
         
         return view('KYCCheck.index')->withInfo($kyc);
     }
@@ -42,6 +50,7 @@ class KycCheckController extends Controller
     public function refresh()
     {
         $kyc = Knowyc::where('users', "active")->update(array('users' => null));
+
         return redirect()->route('kyccheck');
     }
     
@@ -50,6 +59,9 @@ class KycCheckController extends Controller
         $kyc = Knowyc::where('status', "Pending")->first();
         $kyc->pic_passport = $this->getImagewithdim($kyc->pic_passport);
         $kyc->pic_portrait = $this->getImage($kyc->pic_portrait);
+        $count = Knowyc::count();
+        $kyc->pre = $kyc->id - 1;
+        $kyc->post = $count - $kyc->id;
        
         return view('KYCCheck.index')->withInfo('$kyc');
     }
@@ -81,6 +93,9 @@ class KycCheckController extends Controller
         $kyc->save();
         $kyc->pic_passport = $this->getImagewithdim($kyc->pic_passport);
         $kyc->pic_portrait = $this->getImage($kyc->pic_portrait);
+        $count = Knowyc::count();
+        $kyc->pre = $kyc->id - 1;
+        $kyc->post = $count - $kyc->id;
         
         return view('KYCCheck.index')->withInfo($kyc);
     }
@@ -97,6 +112,9 @@ class KycCheckController extends Controller
         $kyc->save();
         $kyc->pic_passport = $this->getImagewithdim($kyc->pic_passport);
         $kyc->pic_portrait = $this->getImage($kyc->pic_portrait);
+        $count = Knowyc::count();
+        $kyc->pre = $kyc->id - 1;
+        $kyc->post = $count - $kyc->id;
         
         return view('KYCCheck.index')->withInfo($kyc);
     }
@@ -113,6 +131,9 @@ class KycCheckController extends Controller
         $kyc->save();
         $kyc->pic_passport = $this->getImagewithdim($kyc->pic_passport);
         $kyc->pic_portrait = $this->getImage($kyc->pic_portrait);
+        $count = Knowyc::count();
+        $kyc->pre = $kyc->id - 1;
+        $kyc->post = $count - $kyc->id;
         
         return view('KYCCheck.index')->withInfo($kyc);
     }
