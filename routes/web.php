@@ -28,7 +28,7 @@ Route::get('/duplicate', function () {
 
 Route::post('/submit', "KYCController@validateKyc");
 
-Route::get('/wund', 'KycCheckController@index')->name('kyccheck');
+Route::get('/check', 'KycCheckController@index')->name('kyccheck');
 
 // Route::post('/status', 'KycCheckController@updateStatus');
 Route::post('/note', 'KycCheckController@updateNote');
@@ -39,4 +39,3 @@ Route::get('/pending/{id}', 'KycCheckController@PendingStatus')->name('kyc.pendi
 Route::get('/reject/{id}', 'KycCheckController@RejectStatus')->name('kyc.reject');
 Route::get('/refresh', 'KycCheckController@refresh')->name('kyc.refresh');
 Route::get('/getpending', 'KycCheckController@getPending')->name('kyc.getpending');
-

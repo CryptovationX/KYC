@@ -26,7 +26,7 @@ class CreateKnowycsTable extends Migration
             $table->string('id_number');
             $table->string('pic_passport');
             $table->string('pic_portrait');
-            $table->string('status')->nullable();
+            $table->string('status')->default('unconfirmed');
             $table->string('users')->nullable();
             $table->string('note')->nullable();
             $table->timestamps();
