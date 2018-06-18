@@ -13,6 +13,7 @@
 
 
 
+
 Route::get('/', function () {
     return view('KYC.kyc');
 });
@@ -26,3 +27,16 @@ Route::get('/duplicate', function () {
 });
 
 Route::post('/submit', "KYCController@validateKyc");
+
+Route::get('/wund', 'KycCheckController@index')->name('kyccheck');
+
+// Route::post('/status', 'KycCheckController@updateStatus');
+Route::post('/note', 'KycCheckController@updateNote');
+Route::get('/next/{id}', 'KycCheckController@getNext')->name('getnext');
+Route::get('/previous/{id}', 'KycCheckController@getPrevious')->name('getprevious');
+Route::get('/approve/{id}', 'KycCheckController@ApproveStatus')->name('kyc.approve');
+Route::get('/pending/{id}', 'KycCheckController@PendingStatus')->name('kyc.pending');
+Route::get('/reject/{id}', 'KycCheckController@RejectStatus')->name('kyc.reject');
+Route::get('/refresh', 'KycCheckController@refresh')->name('kyc.refresh');
+Route::get('/getpending', 'KycCheckController@getPending')->name('kyc.getpending');
+
