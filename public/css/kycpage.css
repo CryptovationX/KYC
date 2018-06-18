@@ -98,6 +98,9 @@
 
 .kycalert {
     margin-top: 75px;
-
     text-align: center;
+}
+
+.kyctransition{
+    transition: 0.3s;
 }
