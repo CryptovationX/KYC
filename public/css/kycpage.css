@@ -37,10 +37,10 @@
 }
 
 .container {
-    padding: 10px 50px;
+    padding: 10px 40px;
     background-color:white;
     height: 100%;
-    opacity: 0.92;
+    /* margin: 10px 20px; */
 }
 
 .kyctextbox {
@@ -244,3 +244,4 @@ img {
     }
 
 }
+

@@ -12,7 +12,7 @@
 
 @include('KYC._theme')
 
-<div class="container"    style="border-radius: 20px;" >
+<div class="container"    style="border-radius: 10px;" >
 
     @if (count($errors) > 0)
 
