@@ -37,6 +37,7 @@
 }
 
 .container {
+    padding: 10px 50px;
     background-color:white;
     height: 100%;
     opacity: 0.92;
@@ -44,7 +45,7 @@
 
 .kyctextbox {
     width: 100%;
-    margin-left: 20px;
+    margin: 5px 5px;
 }
 
 .kycmargin {
@@ -66,19 +67,22 @@
 }
 
 .kycmargintext {
+    font-size: 14px;
     margin-left: 20px;
     margin-top: 20px;
 }
 
-.kycheading {
+
+/* .kycheading {
     text-align: right;
-}
+} */
+
 .kycrow {
     margin-top: 20px
 }
 
 .kycselect {
-    margin-left: 20px;
+    margin: 5px 5px;
     width: 100%;
     height:25px;
 }
@@ -112,11 +116,23 @@
 .kycunderlogo{
     color: white;
     text-align: center;
+    font-size: 14px;
+    font-family: 'Open Sans';
+    margin-top: -32px;
+    margin-bottom: 42px;
+    margin-right: -20px;
+}
+
+@media (min-width: 768px) {
+    .kycunderlogo {
+    color: white;
+    text-align: center;
     font-size: 21px;
     font-family: 'Open Sans';
     margin-top: -42px;
     margin-bottom: 42px;
     margin-right: -20px;
+    }
 }
 
 * {box-sizing: border-box;}
@@ -211,4 +227,20 @@ uncomment this part if you haven't added this code anywhere else
 .mfp-with-zoom.mfp-removing .mfp-container, 
 .mfp-with-zoom.mfp-removing.mfp-bg {
 	opacity: 0;
+}
+
+img {
+    width: 100%;
+    height: auto;
+}
+
+.topic {
+    font-size: 24px;
+}
+
+@media (min-width:768) {
+    .topic {
+        font-size: 30px;
+    }
+
 }

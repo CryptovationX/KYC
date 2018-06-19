@@ -12,7 +12,7 @@
 
 @include('KYC._theme')
 
-<div class="container">
+<div class="container"    style="border-radius: 20px;" >
 
     @if (count($errors) > 0)
 
@@ -32,7 +32,7 @@
     <div class="row">
 
         <div class='col-md-12'>
-            <h1 class="kycmargintext" style="text-align:center">
+            <h1 class="topic" style="text-align:center">
                     CXA Airdrop Round #1 - KYC Form for The Qualifier
             </h1>
             <br>
