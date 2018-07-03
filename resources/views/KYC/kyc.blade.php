@@ -10,8 +10,10 @@
 
 @section('contents')
 
-@include('KYC._theme')
 
+
+<div id="particles-js" class="radial-bg"></div>
+@include('KYC._theme')
 <div class="container">
 
     @if (count($errors) > 0)

@@ -1,14 +1,30 @@
+html, body {
+    height:100%;
+}
 
-#particles-js canvas{
+.radial-bg canvas{
     position: fixed;
     width: 100%;
     height: 100%;
     z-index: -1;
-    background-image: url('/images/pinbg.jpg');
+    background-image: url('https://s3-ap-southeast-1.amazonaws.com/cryptovationx/public/pinbg.jpg');
     background-repeat: no-repeat;
     background-size: cover;
     background-attachment: fixed;
 }
+
+.space-bg canvas{
+    position: fixed;
+    width: 100%;
+    height: 100%;
+    z-index: -100;
+    background-image: url('https://s3-ap-southeast-1.amazonaws.com/cryptovationx/public/Login_Background.jpeg');
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-attachment: fixed;
+}
+
+
 
 .center{
     display: block;
@@ -38,8 +54,13 @@
 
 .container {
     background-color:white;
-    height: 100%;
+    padding-top: 20px;
     opacity: 0.92;
+}
+
+.fill { 
+    min-height: 100%;
+    height: 100%;
 }
 
 .kyctextbox {
