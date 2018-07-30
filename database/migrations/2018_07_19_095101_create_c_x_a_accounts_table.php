@@ -4,7 +4,7 @@ use Illuminate\Support\Facades\Schema;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class CreateKycchecksTable extends Migration
+class CreateCXAAccountsTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,13 +13,19 @@ class CreateKycchecksTable extends Migration
      */
     public function up()
     {
-        Schema::create('kycchecks', function (Blueprint $table) {
+        Schema::create('c_x_a_accounts', function (Blueprint $table) {
             $table->increments('id');
+            $table->string('account_id')->unique()->fillable();
             $table->string('firstname')->nullable();
             $table->string('lastname')->nullable();
+            $table->string('sex')->nullable();
+            $table->date('birth_date')->nullable();
+            $table->string('nationality')->nullable();
+            $table->string('residence')->nullable();
+            $table->string('id_number')->nullable();
             $table->string('email')->nullable();
-            $table->string('status')->default("unconfirmed");
-            $table->string('users')->nullable();
+            $table->string('ethwallet')->nullable()->unique();
+            $table->string('tel')->nullable();
             $table->string('note')->nullable();
             $table->timestamps();
         });
@@ -32,6 +38,6 @@ class CreateKycchecksTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('kycchecks');
+        Schema::dropIfExists('c_x_a_accounts');
     }
 }

@@ -27,8 +27,8 @@ class KYCController extends Controller
             'residence' => 'required',
             'us_citizen' => 'required',
             'id_number' => 'required|alpha_num',
-            'pic_passport' => 'required|image|mimes:jpeg,png,jpg,gif|max:2048',
-            'pic_portrait' => 'required|image|mimes:jpeg,png,jpg,gif|max:2048',
+            'pic_passport' => 'required|image|mimes:jpeg,png,jpg,gif|max:8192',
+            'pic_portrait' => 'required|image|mimes:jpeg,png,jpg,gif|max:8192',
         ]);
 
         $account = new Knowyc();

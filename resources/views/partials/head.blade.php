@@ -2,6 +2,11 @@
 <link href="{{ asset('/css/parsley.css') }}" rel="stylesheet"> 
 <link href="{{ asset('/css/ionicons.min.css') }}" rel="stylesheet">
 <link href="{{ asset('/css/footer.css') }}" rel="stylesheet">
+<link href="{{ asset('/css/rotateimage.css') }}" rel="stylesheet">
+<script type='text/javascript' src='http://code.jquery.com/jquery-1.7.1.js'></script>
+<script type='text/javascript' src='jquery.rotate.1-1.js'></script>
+
+
 <link href="https://use.fontawesome.com/releases/v5.0.6/css/all.css" rel="stylesheet">
 <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet" integrity="sha384-wvfXpqpZZVQGK6TAh5PVlGOfQNHSoD2xbE+QkPxCAFlNEevoEH3Sl0sibVcOQVnN" crossorigin="anonymous">
 <link href="https://fonts.googleapis.com/css?family=Open+Sans:300" rel="stylesheet">

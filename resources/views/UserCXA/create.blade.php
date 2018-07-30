@@ -15,7 +15,6 @@
 <div class="container"    style="border-radius: 10px;" >
 
     @if (count($errors) > 0)
-
     <div class="alert alert-danger" role="alert">
         <strong>Errors:</strong>
         <ul>
@@ -24,41 +23,28 @@
             @endforeach
         </ul>
     </div>
-
     @endif 
-    
-    {!! Form::open(['action'=>'KYCController@validateKyc','enctype' => 'multipart/form-data','data-parsley-validate' => '']) !!}
-    
-    <div class="row">
 
+    {!! Form::open(['action'=>'UserCXAController@validateUser','enctype' => 'multipart/form-data','data-parsley-validate' => '']) !!}
+    <div class="row">
         <div class='col-md-12'>
             <h1 class="topic" style="text-align:center">
-                    CXA Airdrop Round #1 - KYC Form for The Qualifier
+                    Create New Account
             </h1>
-            <br>
         </div>
-
-        <div class="col-md-2"></div>
-        <div class="col-md-8">The KYC form is required to filter some citizen from receiving Airdrops due to Laws and Regulations stated in their country.  All the personal information will be kept confidential and will not disclose to third party without your consent. Thank you for your participation and sorry for your inconvenience.</div>
-        <div class="col-md-2"></div>
-
     </div>
-    <br>
+    <h4>Account ID: {{$accountid}} </h4>
     <hr>
-
-    <div class="row kycheading kycrow ">
+    {{-- <div class="row kycheading kycrow ">
         <div class="col-md-2">
-            Account ID
+            Account ID: {{$accountid}}
         </div>
         <div class='col-md-4' , style='color:gray; text-align:center'>
-
             {{ Form::text('account_id', null, ["class" => "kyctextbox ", 'required' => '' ,'data-parsley-type' => 'alphanum',
             'data-parsley-error-message' => "Please state your Account ID", 'data-parsley-error-message' => "Account ID
             may only contain letters and numbers", "placeholder" => " From Announced e-mail (Ex. CXA9999)"]) }}
-
-
         </div>
-    </div>
+    </div> --}}
 
     <div class="row kycheading kycrow ">
         <div class="col-md-2">
@@ -69,7 +55,6 @@
             {{ Form::text('firstname', null, ["class" => "kyctextbox ", 'required' => '' ,'data-parsley-pattern' => "^[A-Za-z]*$",
             'data-parsley-error-message' => "Please state your First Name", 'data-parsley-pattern-message' => "First Name
             may only contain english letters"]) }}
-
 
         </div>
     </div>
@@ -229,20 +214,6 @@
         </div>
     </div>
 
-    <div class="row kycrow">
-        <div class="col-md-2 kycheading">
-            Are you a U.S. citizen?
-        </div>
-        <div class='col-md-1 kycradio1'>
-            {{ Form::radio('us_citizen', 'Yes') }} Yes
-        </div>
-        <div class='col-md-1 kycradio2'>
-            {{ Form::radio('us_citizen', 'No') }} No
-        </div>
-    </div>
-
-    <hr>
-
     <div class="row kycrow " style="margin-bottom:20px">
         <div class="col-md-2 kycheading">
             Passport or<br>National ID Card
@@ -253,86 +224,93 @@
             may only contain letters and numbers"]) }}
         </div>
     </div>
+    <div class="row kycrow " style="margin-bottom:20px">
+            <div class="col-md-2 kycheading">
+                Email
+            </div>
+            <div class='col-md-4' , style='color:gray; text-align:center'>
+                {{ Form::text('email', null, ["class" => "kyctextbox "]) }}
+            </div>
+    </div>
+    <div class="row kycrow " style="margin-bottom:20px">
+        <div class="col-md-2 kycheading">
+            Tel
+        </div>
+        <div class='col-md-4' , style='color:gray; text-align:center'>
+            {{ Form::text('tel', null, ["class" => "kyctextbox "]) }}
+        </div>
+    </div>
+    <div class="row kycrow " style="margin-bottom:20px">
+        <div class="col-md-2 kycheading">
+            ETH Wallet Address
+        </div>
+        <div class='col-md-4' , style='color:gray; text-align:center'>
+            {{ Form::text('ethwallet', null, ["class" => "kyctextbox "]) }}
+        </div>  
+    </div>
+
+<br>
+<h4>Balance</h4>
+<hr>
+    <div class="row kycheading kycrow ">
+        <div class="col-md-2">
+            Type
+        </div>
+        <div class='col-md-4' , style='color:gray; text-align:center; margin-left:-30px'>
+                {{Form::select('type', [ "Private Sale" => "Private Sale", "Airdrop" => "Airdrop"], null, ['class'
+                => 'kycselect', 'placeholder' => 'Please enter keyword and select transaction type'])}}
+        </div>
+        <div class="col-md-2" style='margin-left:30px'>
+            Amount USD (USD)
+        </div>
+        <div class='col-md-4' , style='color:gray; text-align:center; margin-left:-30px'>
+            {{ Form::text('amount_usd', null,["class" => "kyctextbox "]) }}
+        </div>
+    </div>
+    <div class="row kycheading kycrow ">
+            <div class="col-md-2">
+                Price (USD)
+            </div>
+            <div class='col-md-4' , style='color:gray; text-align:center; margin-left:-30px'>
     
-
-    <div class="row" >
-        <div class="col-md-2 kycheading">
-            Passport data page
+                {{ Form::text('price', null, ["class" => "kyctextbox "]) }}
+            </div>
+    
+            <div class="col-md-2" style='margin-left:30px'>
+                Token (CXA)
+            </div>
+            <div class='col-md-4' , style='color:gray; text-align:center; margin-left:-30px'>
+                {{ Form::text('token', null,["class" => "kyctextbox "]) }}
+            </div>
         </div>
-        <div class='col-md-3'>
-            {{Form::file('pic_passport', ['class' => 'image kyctextbox ', 'id' => 'profile-img2'])}}
-        </div>
-    </div>
-    <div class="row" style="margin-bottom:20px">
-        <div class="col-md-2"></div>
-
-        <div class='col-md-10'>
-            <p class="kycmargintext">Please upload the high quality photo of your Passport Personal Page OR National ID card. (JPG, JPEG, PNG, GIF only)</p>
-        </div>
-
-        <div class="col-md-2"></div>
-        <div class="col-md-5"><img src="{{ asset('images/frame.png') }}" id="profile-img-tag2" class="logo choosenpic" ></div>
-        <div class="col-md-5"><img src="{{ asset('images/passport.png') }}" class="logo" style="display:block; width:100%"></a></div>
+        <div class="row kycheading kycrow ">
+                <div class="col-md-2">
+                    Bonus (%)
+                </div>
+                <div class='col-md-4' , style='color:gray; text-align:center; margin-left:-30px'>
         
+                    {{ Form::text('bonus', null, ["class" => "kyctextbox "]) }}
+                </div>
         
-
-
-    </div>
- 
-
-    <div class="row">
-        <div class="col-md-2 kycheading">
-            Self-portrait with
-            <br> photo ID and note
-        </div>
-        <div class='col-md-3'>
-
-            {{Form::file('pic_portrait', ['class' => 'image kyctextbox ', 'id' => 'profile-img'])}}
-        </div>
-    </div>
-    <div class="row">
-
-        <div class="col-md-2"></div>
-
-        <div class='col-md-9'>
-            <p class="kycmargintext">Please upload the high quality photo of you holding your Passport Personal Page OR National ID Card along with the note containing 1) Reference to "CXA" 2) Date of registration 3) Your signature. Make sure your face is clearly visible and all the documents are clearly readable. (JPG, JPEG, PNG, GIF only)</p>
-                    <div class="col-md-3" style="list-style-type:disc; color:green; margin-left:5px;">&#10003; Face clearly visible</div>
-                    <div class="col-md-3" style="list-style-type:disc; color:green;">&#10003; Photo ID clearly visible</div>
-                    <div class="col-md-3" style="list-style-type:disc; color:green;">&#10003; Note with word "CXA"</div>
-                    <div class="col-md-3" style="list-style-type:disc; color:green; margin-right:-5px">&#10003; Note with today's date</div>
-        </div>
-
-        <div class="col-md-2"></div>
-        <div class="col-md-5"><img src="{{ asset('images/frame.png') }}" id="profile-img-tag" class="logo choosenpic" ></div>
-        <div class="col-md-5"><img src="{{ asset('images/portrait.png') }}" class="logo portrait" style="display:block; width:100%"></a></div>
-        
-
-    </div>
+                <div class="col-md-2" style='margin-left:30px'>
+                    Total Token (CXA)
+                </div>
+                <div class='col-md-4' , style='color:gray; text-align:center; margin-left:-30px'>
+                    {{ Form::text('total_token', null,["class" => "kyctextbox "]) }}
+                </div>
+            </div>
+<div class="row" style="margin-top:20px;">
+            <div class='col-md-2'>
+                <form method="post" action="/user/save">
+                    <input type="hidden" name="account_id" value= {{$accountid}} >
+                    <input type="submit" value="Submit" class = 'btn btn-primary'>
+                </form>
+            </div>
+</div>
     <hr>
 
-    <div class="row">
-        <div class="col-md-2 kycheading">Terms and Conditions</div>
-        <div class="col-md-9 kycmargin">
-            <p> Terms and Conditions : <a href="https://cryptovationx.io/terms-conditions" target="_blank">Link</a> </p>
-            
-            <input type="checkbox" name="terms" id="terms" />
-            <span>I acknowledge that I have read the Terms & Conditions and agree to be bound by them.</span>
-        </div>
-    </div>
-
-    <div class="row" style="margin-top:20px;">
-        <div class='col-md-2'></div>
-        <div class='col-md-2'>
-            {{Form::submit('Submit', ['id' => 'submitbut', 'class' => 'kyctextbox btn btn-primary kyctransition', 'disabled'])}}
-        </div>
-    </div>
-
-    <br>
-    <br>
-
-    {!! Form::close() !!} @endsection @section('script')
+{!! Form::close() !!} @endsection     
+@section('script')
     @include('partials.footer')
 </div>
-
-
 @endsection
